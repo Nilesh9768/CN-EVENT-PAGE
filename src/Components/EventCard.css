@@ -1,0 +1,152 @@
+
+.event-card{
+    border: 1px solid #9797971a;
+    box-shadow: 0 0 16px 9px #9797971a;
+    margin: 20px 15px;
+    border-radius: 5px;
+    height: fit-content;
+}
+.cover-picture-container{
+    border-radius: 5px;
+    overflow: hidden;
+}
+.event-card img{
+    width: 100%;
+    height: 159px;
+}
+
+.event-name{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 0.2px;
+    margin-bottom: 0;
+    /* height: 85px; */
+}
+
+.event-details{
+
+    margin: 10px 10px;
+}
+.about-event{
+    display: flex;
+    align-items: center;
+    border-bottom: #9797971a 1px solid;
+    padding-top: 13px;
+    padding-bottom: 10px;
+}
+
+
+.start-fee-venue + p{
+    margin: 0;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    color: #212121;
+}
+
+.time-container,.fee-container,.venue-container{
+    margin-right: 20px;
+}
+
+.start-fee-venue{
+    font-size: 13px;
+    color: rgba(28, 28,28,0.6);
+    margin: 0 0 3px;
+    text-align: left;
+}
+.description{
+    font-size: 14px;
+    color: #61615A;
+    margin: 12px 0 20px;
+    text-align: left;
+    line-height: 19px;
+}
+
+.tags-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 70px;
+}
+
+.tag{
+    background-color: rgb(241, 241, 241);
+    color: #5c5c5d;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 4px 14px;
+    border-radius: 3px;
+    font-size: 12px;
+    height: fit-content;
+}
+
+
+.footer p{
+    text-align: left;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #757575;
+}
+
+.users-button-container{
+    display: flex;
+    margin-top: 20px;
+    border-top: #9797971a solid 1px;
+    /* padding: 6px 0 6px 0; */
+}
+.users-image-container{
+    display: flex;
+    width: 60%;
+    padding: 6px 0 6px 19px;
+}
+
+.user-image-container{
+    border: rgb(254, 255, 255) 1px solid;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+.user-image{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.tooltip{
+    color: aliceblue;
+    background-color: rgb(150, 150, 150);
+    padding: 6px 9px;
+    border-radius: 3px;
+    font-size: 10px;
+    height: fit-content;
+}
+
+div.register-button{
+    width: 123px;
+    height: 30px;
+    cursor: pointer;
+    padding-top: 10px;
+    
+}
+.register-button img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.registration-end-time{
+    position: relative;
+    margin: 0;
+    background-color: #fff;
+    bottom: 40px;
+    left: 75px;
+    text-align: right;
+    font-size: 12px;
+    max-width: fit-content;
+    padding: 7px 13px;
+    border-radius: 2px;
+}
+
