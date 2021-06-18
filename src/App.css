@@ -1,9 +1,21 @@
 .App {
   text-align: center;
   border: 1px solid #d0d0d0;
-  margin: 70px 150px;
+  margin: 70px 130px;
   border-radius: 5px;
  
+}
+
+@media only screen and (max-width:712px){
+  .App{
+    margin: 70px 20px;
+  }
+}
+
+@media only screen and (min-width:712px )and (max-width : 1144px){
+  .App{
+    margin: 70px 60px;
+  }
 }
 
 

@@ -21,6 +21,13 @@
     display: flex;
     align-items: center;
 }
+@media only screen and (max-width:700px){
+    .categories{
+        padding-right: 45px;
+        font-size: 17px;
+    }
+}
+
 .icon{
     position: relative;
     top: 5px;
@@ -44,3 +51,6 @@ a.activeClass{
     font-weight:600;
 }
 
+@media screen {
+    
+}

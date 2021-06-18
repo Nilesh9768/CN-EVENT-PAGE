@@ -1,6 +1,18 @@
 
 .event-container{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    padding-left: 21px;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width:712px){
+
+    .event-container{
+        width: 98%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

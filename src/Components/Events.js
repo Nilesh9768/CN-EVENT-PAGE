@@ -11,9 +11,12 @@ class Events extends Component {
         this.catRef = React.createRef();
         this.subCatRef = React.createRef();
         
+        this.prevCategory = localStorage.getItem('prevCategory') || 'ALL_EVENTS'
+        this.prevSubCategory = localStorage.getItem('prevSubCategory') || 'Upcoming'
+
         this.state = {
-            category:'ALL_EVENTS',
-            sub_category:'Upcoming',
+            category:this.prevCategory, 
+            sub_category:this.prevSubCategory,
             events:[],
             copiedEvents:[],
             selectedTags:[],
@@ -25,15 +28,47 @@ class Events extends Component {
         }
     }
 
+    setCategory =(category) =>{
+        localStorage.setItem('prevCategory',category)
+    }
+
+    setSubCategory =(subCategory) =>{
+        localStorage.setItem('prevSubCategory',subCategory)
+    }
+
     changeCategory = (e,Category) =>{
-            this.setState({category:Category,sub_category:'Upcoming'},()=>{
-                this.fetchEvents()
-            })
+
+        if(Category!=='ALL_EVENTS'){
+            this.catRef.current.style.color ='#9e9e9e';
+            this.catRef.current.style.fontWeight='400';
+            
+        }else{
+            this.catRef.current.style.color ='#f9601e';
+            this.catRef.current.style.fontWeight='600';
+        }
+        this.subCatRef.current.style.color ='#f9601e';
+        this.subCatRef.current.style.fontWeight='600';
+
+        this.setState({category:Category,sub_category:'Upcoming'},()=>{
+            this.fetchEvents()
+        })
+        this.setCategory(Category);
+        this.setSubCategory('Upcoming');
     }
     changeSubCategory = (subcategory) =>{
+
+        if(subcategory!=='Upcoming'){
+            this.subCatRef.current.style.color ='#9e9e9e';
+            this.subCatRef.current.style.fontWeight='400';
+            
+        }else{
+            this.subCatRef.current.style.color ='#f9601e';
+            this.subCatRef.current.style.fontWeight='600';
+        }
         this.setState({sub_category:subcategory},()=>{
             this.fetchEvents()
         })
+        this.setSubCategory(subcategory);
     }
 
     addTags = (e,tag) =>{
@@ -77,6 +112,8 @@ class Events extends Component {
         return this.state.selectedTags;
     }
     fetchEvents=()=>{
+
+        console.log(this.state.category , this.state.sub_category)
         
         fetch(
             `https://api.codingninjas.com/api/v3/events?event_category=${this.state.category}&event_sub_category=${this.state.sub_category}&tag_list=Career Guidance,Coding Concepts,Competitive Programming,Futuristic Tech&offset=0`
@@ -108,7 +145,18 @@ class Events extends Component {
     };
     
     componentDidMount(){
+
+        if(this.state.category === 'ALL_EVENTS'){
+            this.catRef.current.style.color ='#f9601e';
+            this.catRef.current.style.fontWeight='600';
+        }
         
+        if(this.state.sub_category==='Upcoming'){
+            this.subCatRef.current.style.color ='#f9601e';
+            this.subCatRef.current.style.fontWeight='600';
+        }
+        
+
         this.fetchEvents();
     }
     render() {
