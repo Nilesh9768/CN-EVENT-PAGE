@@ -32,8 +32,12 @@ class EventCard extends Component {
                 <div className='cover-picture-container'>
                     <img src={eventData.cover_picture} alt=''/>
                     {Date.now()>= eventData.registration_start_time*1000 && Date.now() < eventData.registration_end_time*1000 ?
-                        <p className='registration-end-time'>Registration <strong>open</strong> till <strong>{this.convertTimeStamp(eventData.registration_end_time)}</strong></p>:null
+                    <div className='circle-container'>
+                        <div className='circle'></div>
+                       <p className='registration-end-time'>Registration <strong>open</strong> till <strong>{this.convertTimeStamp(eventData.registration_end_time)}</strong></p>
+                    </div>:null
                     }
+                    
                 </div>
                 
                 <div className='event-details'>

@@ -184,6 +184,7 @@ class Events extends Component {
                     pageCount={this.state.pageCount}/>
 
                     <div className='tag-wrapper'>
+                        <p className='tagHead'>TAGS</p>
                         <Tags selectedTags={this.state.selectedTags} addTags={this.addTags} category={this.state.category} subCategory={this.state.sub_category}/>
                     </div>
                 </div>

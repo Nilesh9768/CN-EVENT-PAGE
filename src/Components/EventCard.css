@@ -15,6 +15,7 @@
     }
 }
 .cover-picture-container{
+    position: relative;
     border-radius: 5px;
     overflow: hidden;
 }
@@ -146,15 +147,50 @@ div.register-button{
 }
 
 .registration-end-time{
-    position: relative;
+    
     margin: 0;
-    background-color: #fff;
-    bottom: 40px;
-    left: 75px;
     text-align: right;
     font-size: 12px;
     max-width: fit-content;
+}
+
+.circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    animation-name: glow-circle;
+    animation-iteration-count: infinite;
+    
+    animation-timing-function: ease-in-out;
+    
+    animation-duration: 1.5s;
+}
+
+.circle-container{
+    display: flex;
+    margin: 0;
+    background-color: #fff;
     padding: 7px 13px;
     border-radius: 2px;
+    position: absolute;
+    bottom: 12px;
+    right: 10px;
+    width: 72%;
+
+}
+
+@keyframes glow-circle {
+    
+    from{
+        
+        background-color: rgb(252, 97, 192);
+        box-shadow: 0 0 5px 5px rgb(255, 185, 228);
+    }
+    to{
+        
+        background-color: rgb(247, 196, 227);
+        box-shadow: 0 0 5px 3px rgb(248, 197, 228);
+    }
 }
 

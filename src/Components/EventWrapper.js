@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import AllEvents from './AllEvents'
 import './EventWrapper.css'
 import ReactPaginate from 'react-paginate';
@@ -33,7 +33,7 @@ class EventWrapper extends Component {
                                 <AllEvents events={this.state.events} tags={this.state.selectedTags}/>
                             </Route>
                             <Route path={'/'}>
-                                <AllEvents events={this.state.events} tags={this.props.selectedTags}/>
+                                <Redirect to={`/events/${this.props.category}/${this.props.subCategory}`} />
                             </Route>
                             <Route path={`/events/${this.props.category}/${this.props.subCategory}/${this.props.selectedTags}`}>
                                 <AllEvents events={this.state.events}  tags={this.props.selectedTags}/>
