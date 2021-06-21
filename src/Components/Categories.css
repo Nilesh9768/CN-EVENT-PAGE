@@ -21,10 +21,10 @@
     display: flex;
     align-items: center;
 }
-@media only screen and (max-width:700px){
+@media only screen and (max-width:712px){
     .categories{
-        padding-right: 45px;
-        font-size: 17px;
+        padding-right: 22px;
+        font-size: 16px;
     }
 }
 
@@ -51,6 +51,3 @@ a.activeClass{
     font-weight:600;
 }
 
-@media screen {
-    
-}

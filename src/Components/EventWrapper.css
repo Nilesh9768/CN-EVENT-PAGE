@@ -1,30 +1,16 @@
 
-.event-tag-wrapper{
-    display: flex;
-    width: 100%;
-}
+
 .event-wrapper{
     width: 77%;
     margin-right: 1%;
 }
 
-.tagHead{
-  font-size: 18px;
-  padding-top: 12px;
-  color:#616161;
-}
-.tag-wrapper{
-    width: 22%;
-    text-align: left;
-}
+
 
 @media only screen and (max-width:712px){
     .event-wrapper{
       width: 100%;
       margin-right: 0;
-    }
-    .tag-wrapper{
-      display: none;
     }
 }
 
@@ -32,21 +18,16 @@
 .pagination {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     list-style: none;
     cursor: pointer;
-    text-align: right;
-    margin-left: 200px;
-    margin-top: 30px;
+    margin-top: 45px;
     height: 100px;
-
-  }
-  @media only screen and (max-width:712px){
-    .pagination{
-      margin-left: 50px;
-    }
+    padding-left: 21px;
   }
   
+  .pagination li{
+    margin-right: 10px;
+  }
   .pagination a {
     padding: 10px;
     border-radius: 5px;

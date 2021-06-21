@@ -1,0 +1,90 @@
+
+.filter-main-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    overflow: scroll;
+}
+
+.filter-events-container-header{
+    background-color: #fff;
+    box-shadow: 0 0 5px 5px rgb(219, 219, 219);   
+}
+
+.filter-events-container-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 5px 2px rgb(201, 200, 200);   
+}
+
+.filter-button{
+    background-image: linear-gradient( to right, #f6430f , #ee9f15);
+    box-shadow: 0 0 5px rgb(219, 219, 219);  
+    padding: 16px 0;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.filter-events-f{
+    display: flex;
+    padding: 9px 16px;
+    font-size: 14px;
+    color: #757575;
+}
+
+.filter-events-h{
+    display: flex;
+    padding: 2px 16px;
+    font-size: 17px;
+    color: #757575;
+}
+
+.tag-container-mobile{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    height: 68%;
+    margin: 38px 16px 30px;
+    overflow: scroll;
+}
+
+
+.filter-icon{
+    position: relative;
+    bottom: 1px;
+    padding-right: 15px;
+}
+
+.tag-link{
+    text-decoration: none; 
+}
+
+.tag-link p{
+    background-color: rgb(241, 241, 241);
+    width: fit-content;
+    border-radius: 3px;
+    margin: 1px 10px 10px 0;
+    padding: 6px 13px;
+    color: #5c5c5d;
+    font-size: 14px;
+}
+
+a{
+    text-decoration: none;
+}
+
+@media only screen and (min-width : 712px){
+    .filter-events-container-footer{
+        display: none;
+    }
+    .filter-main-container{
+        display: none;
+    }
+}

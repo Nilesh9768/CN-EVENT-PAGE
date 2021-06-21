@@ -45,8 +45,8 @@ class EventWrapper extends Component {
 
                         this.state.events.length !==0 ?
                         <ReactPaginate className='page-container'
-                        previousLabel={"← Previous"}
-                        nextLabel={"Next →"}
+                        previousLabel={"←"}
+                        nextLabel={"→"}
                         pageCount={this.props.pageCount}
                         marginPagesDisplayed={1}
                         pageRangeDisplayed={0}

@@ -19,7 +19,7 @@ export class Tags extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='tag-container'>
                 {
                     this.state.tags.map((tag,i)=>
                         <div key={tag}>

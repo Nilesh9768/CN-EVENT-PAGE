@@ -30,7 +30,6 @@
     text-align: left;
     letter-spacing: 0.2px;
     margin-bottom: 0;
-    /* height: 85px; */
 }
 
 .event-details{
@@ -54,16 +53,19 @@
     color: #212121;
 }
 
-.time-container,.fee-container,.venue-container{
-    margin-right: 20px;
-}
-
 .start-fee-venue{
     font-size: 13px;
     color: rgba(28, 28,28,0.6);
     margin: 0 0 3px;
     text-align: left;
 }
+
+
+
+.time-container,.fee-container,.venue-container{
+    margin-right: 20px;
+}
+
 .description{
     font-size: 14px;
     color: #61615A;
@@ -102,7 +104,6 @@
     display: flex;
     margin-top: 20px;
     border-top: #9797971a solid 1px;
-    /* padding: 6px 0 6px 0; */
 }
 .users-image-container{
     display: flex;
@@ -151,7 +152,8 @@ div.register-button{
     margin: 0;
     text-align: right;
     font-size: 12px;
-    max-width: fit-content;
+    padding:0;
+    /* max-width: fit-content; */
 }
 
 .circle{
@@ -176,7 +178,7 @@ div.register-button{
     position: absolute;
     bottom: 12px;
     right: 10px;
-    width: 72%;
+    width: 258px;
 
 }
 
@@ -194,3 +196,37 @@ div.register-button{
     }
 }
 
+@media only screen and (max-width:712px){
+    .start-fee-venue{
+        font-size: 12px;
+    }
+    .start-fee-venue + p{
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .time-container,.fee-container,.venue-container{
+        margin-right: 10px;
+    }
+
+    .event-name{
+        font-size: 16px;
+    }
+
+    .description{
+        font-size: 12px;
+    }
+    .registration-end-time{
+        font-size: 12px;
+    }
+    .tags-container{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:996px) and (min-width:713px){
+
+    .circle-container{
+        width: 78%;
+    }
+}

@@ -1,0 +1,46 @@
+.main-container {
+    text-align: center;
+    border: 1px solid #d0d0d0;
+    margin: 70px 130px;
+    border-radius: 5px;
+   
+  }
+  
+  @media only screen and (max-width:712px){
+    .main-container{
+      margin: 70px 20px;
+    }
+  }
+  
+  @media only screen and (min-width:712px )and (max-width : 1144px){
+    .main-container{
+      margin: 70px 60px;
+    }
+  }
+
+.event-tag-wrapper{
+    display: flex;
+    width: 100%;
+}
+
+.tagHead{
+    font-size: 18px;
+    padding-top: 12px;
+    color:#616161;
+}
+
+.tag-wrapper{
+    width: 22%;
+    text-align: left;
+}
+
+@media only screen and (max-width:712px){
+    
+    .tag-wrapper{
+      display: none;
+    }
+}
+
+  
+  
+  

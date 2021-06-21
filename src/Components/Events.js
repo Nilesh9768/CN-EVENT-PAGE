@@ -3,7 +3,8 @@ import Categories from './Categories'
 import Subcategories from './Subcategories'
 import EventWrapper from './EventWrapper'
 import Tags from './Tags'
-import './EventWrapper.css'
+import FilterEvents from './FilterEvents'
+import './Events.css'
 class Events extends Component {
 
     constructor(props) {
@@ -20,6 +21,8 @@ class Events extends Component {
             events:[],
             copiedEvents:[],
             selectedTags:[],
+            showEvents:true,
+            innerwidth:'',
 
             perPage: 20,
             currentPage: 1,
@@ -28,47 +31,54 @@ class Events extends Component {
         }
     }
 
-    setCategory =(category) =>{
-        localStorage.setItem('prevCategory',category)
+setCategory =(category) =>{
+    localStorage.setItem('prevCategory',category)
+}
+
+setSubCategory =(subCategory) =>{
+    localStorage.setItem('prevSubCategory',subCategory)
+}
+
+changeCategory = (e,Category) =>{
+
+    if(Category!=='ALL_EVENTS'){
+        this.catRef.current.style.color ='#9e9e9e';
+        this.catRef.current.style.fontWeight='400';
+        
+    }else{
+        this.catRef.current.style.color ='#f9601e';
+        this.catRef.current.style.fontWeight='600';
     }
+    this.subCatRef.current.style.color ='#f9601e';
+    this.subCatRef.current.style.fontWeight='600';
 
-    setSubCategory =(subCategory) =>{
-        localStorage.setItem('prevSubCategory',subCategory)
-    }
+    this.setState({category:Category,sub_category:'Upcoming'},()=>{
+        this.fetchEvents()
+    })
+    this.setCategory(Category);
+    this.setSubCategory('Upcoming');
+}
+changeSubCategory = (subcategory) =>{
 
-    changeCategory = (e,Category) =>{
-
-        if(Category!=='ALL_EVENTS'){
-            this.catRef.current.style.color ='#9e9e9e';
-            this.catRef.current.style.fontWeight='400';
-            
-        }else{
-            this.catRef.current.style.color ='#f9601e';
-            this.catRef.current.style.fontWeight='600';
-        }
+    if(subcategory!=='Upcoming'){
+        this.subCatRef.current.style.color ='#9e9e9e';
+        this.subCatRef.current.style.fontWeight='400';
+        
+    }else{
         this.subCatRef.current.style.color ='#f9601e';
         this.subCatRef.current.style.fontWeight='600';
-
-        this.setState({category:Category,sub_category:'Upcoming'},()=>{
-            this.fetchEvents()
-        })
-        this.setCategory(Category);
-        this.setSubCategory('Upcoming');
     }
-    changeSubCategory = (subcategory) =>{
+    this.setState({sub_category:subcategory},()=>{
+        this.fetchEvents()
+    })
+    this.setSubCategory(subcategory);
+}
 
-        if(subcategory!=='Upcoming'){
-            this.subCatRef.current.style.color ='#9e9e9e';
-            this.subCatRef.current.style.fontWeight='400';
-            
-        }else{
-            this.subCatRef.current.style.color ='#f9601e';
-            this.subCatRef.current.style.fontWeight='600';
-        }
-        this.setState({sub_category:subcategory},()=>{
-            this.fetchEvents()
-        })
-        this.setSubCategory(subcategory);
+    showEvents=()=>{
+        this.setState({showEvents:true})
+    }
+    hideEvents =() =>{
+        this.setState({showEvents:false})
     }
 
     addTags = (e,tag) =>{
@@ -80,56 +90,72 @@ class Events extends Component {
             newTagsArray= this.pushTagInArray(e,tag)
         }
         
+        
         this.setState({selectedTags:newTagsArray},()=>{
-                
-            if(this.state.selectedTags.length===0){
-                this.setState({events:this.state.copiedEvents});
-            }else{
-                let updatedEvents=this.state.copiedEvents.filter((event)=>{
-                    return event.card_tags.some((t)=>this.state.selectedTags.includes(t));
-                })
-                this.setState({events:updatedEvents});
-            }
-                
+            console.log(this.state.selectedTags)
+            if(this.state.showEvents){
+                this.filter_events();
+            }       
         });
-        
+
     }
 
-    pushTagInArray=(e,tag)=>{
-        this.state.selectedTags.push(tag); 
-        e.target.style.color ='#fff';
-        e.target.style.backgroundColor ='#fa7328';
-        console.log(e.target)
-        return this.state.selectedTags;
+    addTagsForMobile = ()=>{
+        this.filter_events();
     }
 
-    removeTag = (e,tag) =>{
-        let ind = this.state.selectedTags.indexOf(tag);
-        this.state.selectedTags.splice(ind,1);
-        e.target.style.color ='#5c5c5d';
-        e.target.style.backgroundColor ='rgb(241, 241, 241)';
-        console.log(e.target)
-        return this.state.selectedTags;
+filter_events = () =>{
+   
+    console.log(this.state.selectedTags.length)
+    if(this.state.selectedTags.length===0){
+        this.setState({events:this.state.copiedEvents});
+    }else{
+        let updatedEvents=this.state.copiedEvents.filter((event)=>{
+            return event.card_tags.some((t)=>this.state.selectedTags.includes(t));
+        })
+        this.setState({events:updatedEvents});
     }
-    fetchEvents=()=>{
+    
+   
+}
 
-        console.log(this.state.category , this.state.sub_category)
-        
-        fetch(
-            `https://api.codingninjas.com/api/v3/events?event_category=${this.state.category}&event_sub_category=${this.state.sub_category}&tag_list=Career Guidance,Coding Concepts,Competitive Programming,Futuristic Tech&offset=0`
-        ).then((response)=>{
-            response.json().then((result)=>{
-                
-                const slicedEvents =result.data.events.slice(this.state.offset, this.state.offset + this.state.perPage)
-                this.setState({
-                    events:slicedEvents,
-                    copiedEvents:result.data.events,
-                    pageCount: Math.ceil(result.data.events.length / this.state.perPage)
-                })
-                
+pushTagInArray=(e,tag)=>{
+    this.state.selectedTags.push(tag); 
+    e.target.style.color ='#fff';
+    e.target.style.backgroundColor ='#fa7328';
+    console.log(e.target)
+    return this.state.selectedTags;
+}
+
+removeTag = (e,tag) =>{
+    let ind = this.state.selectedTags.indexOf(tag);
+    this.state.selectedTags.splice(ind,1);
+    e.target.style.color ='#5c5c5d';
+    e.target.style.backgroundColor ='rgb(241, 241, 241)';
+    console.log(e.target)
+    return this.state.selectedTags;
+}
+
+
+fetchEvents=()=>{
+
+    console.log(this.state.category , this.state.sub_category)
+    
+    fetch(
+        `https://api.codingninjas.com/api/v3/events?event_category=${this.state.category}&event_sub_category=${this.state.sub_category}&tag_list=Career Guidance,Coding Concepts,Competitive Programming,Futuristic Tech&offset=0`
+    ).then((response)=>{
+        response.json().then((result)=>{
+            
+            const slicedEvents =result.data.events.slice(this.state.offset, this.state.offset + this.state.perPage)
+            this.setState({
+                events:slicedEvents,
+                copiedEvents:result.data.events,
+                pageCount: Math.ceil(result.data.events.length / this.state.perPage)
             })
-        }).catch((err)=>console.log(err))
-    }
+            
+        })
+    }).catch((err)=>console.log(err))
+}
 
     handlePageClick = (e) => {
         const selectedPage = e.selected;
@@ -159,36 +185,57 @@ class Events extends Component {
 
         this.fetchEvents();
     }
+
+   
     render() {
+        console.log(window.innerWidth)
         
         return (
             
             <div>
-                
-                <Categories 
-                changeCategory={this.changeCategory} 
-                ref={this.catRef}/>
+                {this.state.showEvents? 
+                <div className='main-container'>
+                    
+                    <Categories 
+                    changeCategory={this.changeCategory} 
+                    ref={this.catRef}/>
 
-                <Subcategories 
-                changeSubCategory={this.changeSubCategory} 
-                category={this.state.category} 
-                ref={this.subCatRef}/>
-
-                <div className='event-tag-wrapper'>
-                    <EventWrapper 
-                    selectedTags={this.state.selectedTags} 
-                    events={this.state.events} 
+                    <Subcategories 
+                    changeSubCategory={this.changeSubCategory} 
                     category={this.state.category} 
-                    subCategory={this.state.sub_category}
-                    handlePageClick={this.handlePageClick}
-                    pageCount={this.state.pageCount}/>
+                    ref={this.subCatRef}/>
 
-                    <div className='tag-wrapper'>
-                        <p className='tagHead'>TAGS</p>
-                        <Tags selectedTags={this.state.selectedTags} addTags={this.addTags} category={this.state.category} subCategory={this.state.sub_category}/>
+                    <div className='event-tag-wrapper'>
+                        <EventWrapper 
+                        selectedTags={this.state.selectedTags} 
+                        events={this.state.events} 
+                        category={this.state.category} 
+                        subCategory={this.state.sub_category}
+                        handlePageClick={this.handlePageClick}
+                        pageCount={this.state.pageCount}/>
+
+                        <div className='tag-wrapper'>
+                            <p className='tagHead'>TAGS</p>
+                            <Tags 
+                            selectedTags={this.state.selectedTags} 
+                            addTags={this.addTags} 
+                            category={this.state.category} 
+                            subCategory={this.state.sub_category}/>
+                        </div>
                     </div>
-                </div>
+                    
+                </div>:null}
+                <FilterEvents 
+                showEvents={this.showEvents} 
+                hideEvents={this.hideEvents}  
+                addTags={this.addTags}
+                addTagsForMobile = {this.addTagsForMobile}
+                category={this.state.category} 
+                subCategory={this.state.sub_category}/>
+
             </div>
+            
+
         )
     }
 }
